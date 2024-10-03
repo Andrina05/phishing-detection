@@ -1,0 +1,66 @@
+<html lang="en">
+    <style>
+        a {
+            color: #f1f9f9;
+        }
+
+        a:hover {
+            color: #f0f0f0;
+        }
+
+        .abc{
+            text-align:center;
+            color:Black;
+        }
+    </style>
+
+    <head></head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Phishing Attack Detection</title>
+
+        <!-- BootStrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+
+    <body style="background-color: silver;">
+        <nav class="navbar navbar-dark navbar-fixed-top" style="background-color:darkslategrey;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Phishing Detection</a>
+                </div>
+            </div>
+        </nav>
+        <center>
+            <div class="container my-5">
+                <div class="abc">
+                    <h1>Phishing URL Predictor</h1>
+                </div>
+                <br>
+                <form action="\predict" method="post">
+                    <div class="card align-items-center" style='border-radius: 2; opacity: 0.7; width: 460;'>
+                        <div class="card-body">
+                            <h3 class="card-title">Enter a URL:</h3>
+                            <br>
+                            <input type="text" name="websiteurl" id="websiteurl" size="50" required>
+                            <br><br><br>
+                            <input type="submit" value="Predict" class="btn btn-primary" style="font-size: large;">
+                        </div>
+                    </div>
+                </form>
+                <h4 style='text-align: center;color: black;'><b>Prediction: {{prediction}}</b></h4>
+            </div>
+        </center>
+        <!-- JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
