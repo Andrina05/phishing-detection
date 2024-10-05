@@ -2,6 +2,7 @@
 
 import numpy as np
 import pandas as pd
+import requests
 from urllib.parse import urlparse
 
 """
@@ -83,3 +84,16 @@ def feature_extractor(url):
     # features = np.array(list_features).reshape(1, -1) # 1 column, as many rows as necessary
     features_df = pd.DataFrame([list_features], columns=features.keys())
     return features_df
+
+def url_fetcher():
+    url = 'https://openphish.com/feed.txt'
+    response = requests.get(url)
+    if response.status_code == 200:
+        urls = response.text.splitlines()
+        return urls
+    else:
+        print(f'Sorry, URLs could not be fetched. Error: {response.status_code}')
+        return []
+# def url_fetcher():
+#     urls = ['www.google.com', 'http://optimum.paypal.com/try/pay&store=true&okay=false']
+#     return urls

@@ -1,0 +1,82 @@
+<html lang="en">
+    <style>
+        .newheader{
+            text-align:center;
+            color:Black;
+        }
+
+        #outputs {
+            background-color: white;
+            width: 600; height: 350;
+            text-align: start;
+            overflow-y: auto;
+        }
+
+        .phishing {
+            color: darkred;
+        }
+
+        .genuine {
+            color: darkgreen;
+        }
+    </style>
+
+    <head></head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Phishing Attack Detection</title>
+
+        <!-- BootStrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+
+    <body style="background-color: silver;">
+        <nav class="navbar navbar-dark navbar-fixed-top" style="background-color:darkslategrey;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Phishing Detection</a>
+                    <a class="navbar-brand" href="#">Real-time Detection</a>
+                </div>
+            </div>
+        </nav>
+            <div class="container my-5">
+                <div class="newheader">
+                    <h1>Real-time Detection</h1>
+                </div>
+                <br>
+                <div>{{error_line}}</div>
+                <div class="container" id="outputs">
+                    Will display URL prediction here.
+                </div>
+            </div>
+            
+        <!-- JavaScript -->
+        <script>
+            const eventSource = new EventSource('/phishstream');
+            eventSource.onmessage = (event) => {
+                const outputContainer = document.getElementById('outputs');     // fetch the <div> element
+                const newOutput = document.createElement('div');                // create a <div> element for output
+                const msgText = event.data;                                     // the text data from app.py when prediction is done
+                if (msgText.includes("phishing")) {         // if message includes the word 'phishing', apply its class.
+                    newOutput.className = 'phishing';
+                }
+                else if (msgText.includes("Safe")) {        // if message includes the word 'safe', apply its class.
+                    newOutput.className = 'genuine';
+                }
+                newOutput.textContent = msgText;
+                outputContainer.appendChild(newOutput);     // place the output in the original <div>
+                outputContainer.scrollTop = outputContainer.scrollHeight;       // makes it scrollable
+            };
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
