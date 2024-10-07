@@ -94,6 +94,3 @@ def url_fetcher():
     else:
         print(f'Sorry, URLs could not be fetched. Error: {response.status_code}')
         return []
-# def url_fetcher():
-#     urls = ['www.google.com', 'http://optimum.paypal.com/try/pay&store=true&okay=false']
-#     return urls

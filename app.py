@@ -4,17 +4,6 @@ import time
 from url_processing import feature_extractor, url_fetcher
 from flask import Flask,request,render_template
 
-"""
-For looping through a list of URLs
-def detector(urls):
-    for some_url in urls:
-        features = feature_extractor(some_url)
-        prediction = detection_model.predict(features)
-        if prediction[0] == 1:
-            print(f'This URL may be a phishing URL: {some_url}')
-        else:
-            print(f'This URL is safe: {some_url}')
-"""
 # Load the ML model
 with gzip.open('ML_Model\phishing_model_no4_rf.pkl.gz', 'rb') as file:
     detection_model = pickle.load(file)
